@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "1gzCNlrA5cc=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Ng Bob Shoaun\\Documents\\Bob-Lang\\ConsoleApp1\\ConsoleApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ng Bob Shoaun\\.nuget\\packages\\antlr4.runtime.standard\\4.13.1\\antlr4.runtime.standard.4.13.1.nupkg.sha512"
+  ],
+  "logs": []
+}
