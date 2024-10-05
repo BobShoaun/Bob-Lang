@@ -1,0 +1,22 @@
+int hello;string world = 5
+
+func = (int x, double y) => {
+    t = 5;
+}
+
+
+for (int i = 0; i < 2; i++) {
+    
+}
+
+
+if (true)
+    PI = f;
+else {
+    PI = dfsdf;
+}
+
+constant double PI = 3;
+
+
+
