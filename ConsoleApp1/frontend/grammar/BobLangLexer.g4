@@ -1,7 +1,7 @@
 lexer grammar BobLangLexer;
 
 
-Type
+Type_
     : 'int' | 'integer'
     | 'char' | 'character'
     | 'bool' | 'boolean'
@@ -42,7 +42,7 @@ LessThan                   : '<';
 MoreThan                   : '>';
 LessThanEquals             : '<=';
 GreaterThanEquals          : '>=';
-Equals                     : '==';
+Equals_                     : '==';
 NotEquals                  : '!=';
 
 And                        : '&&';
@@ -83,9 +83,6 @@ Modifier
     ;
 
 
-Identifier
-    : [a-zA-Z][a-zA-Z0-9_]* 
-    ;
 
 
 
@@ -108,6 +105,11 @@ Character
     : '\''.'\'' 
     | '\'''\\'.'\''
     ;
+
+Identifier
+    : [a-zA-Z][a-zA-Z0-9_]* 
+    ;
+
 
 Whitespace  
     : [ \t\r\n]+ 

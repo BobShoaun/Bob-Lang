@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "1gzCNlrA5cc=",
+  "dgSpecHash": "vr9V66OU4jKq8Ypri1PaEcNSHpQg7VHjb+iDkyd/XLdAS3eY3XcUwEjhBpQANgs3d+QBGNSvbPfOLFV7CnzlHw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ng Bob Shoaun\\Documents\\Bob-Lang\\ConsoleApp1\\ConsoleApp1.csproj",
+  "projectFilePath": "/home/bobshoaun/Bob-Lang/ConsoleApp1/ConsoleApp1.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Ng Bob Shoaun\\.nuget\\packages\\antlr4.runtime.standard\\4.13.1\\antlr4.runtime.standard.4.13.1.nupkg.sha512"
+    "/home/bobshoaun/.nuget/packages/antlr4.runtime.standard/4.13.1/antlr4.runtime.standard.4.13.1.nupkg.sha512"
   ],
   "logs": []
 }
