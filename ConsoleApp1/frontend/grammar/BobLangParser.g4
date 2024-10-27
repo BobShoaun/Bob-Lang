@@ -37,6 +37,7 @@ iteratorInitializer
 
 expression
     : function                                          # FunctionExpression
+    | expression '(' arguments ')'                      # CallExpression  
     | expression op='++'                                # PostIncrementExpression // PostIncrement
     | expression op='--'                                # PostDecrementExpression // PostDecrement
     | '++' expression                                   # PreIncrementExpression // PreIncrement
@@ -52,10 +53,9 @@ expression
     | expression '||' expression                        # BinaryExpression // LogicalOR
     | expression '?' expression ':' expression          # TernaryExpression // Ternary
     | expression '=' expression                         # BinaryExpression // Assignment
-    | Identifier '(' arguments ')'                      # CallExpression  
     | literal                                           # LiteralExpression
     | Identifier                                        # IdentifierExpression
-    | '(' expression ')'                                # ScopedExpression
+    | '(' expression ')'                                # ParenthesizedExpression
     ;
 
 literal

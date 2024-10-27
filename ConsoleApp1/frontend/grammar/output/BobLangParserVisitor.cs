@@ -83,6 +83,13 @@ public interface IBobLangParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitIteratorInitializer([NotNull] BobLangParser.IteratorInitializerContext context);
 	/// <summary>
+	/// Visit a parse tree produced by the <c>ParenthesizedExpression</c>
+	/// labeled alternative in <see cref="BobLangParser.expression"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitParenthesizedExpression([NotNull] BobLangParser.ParenthesizedExpressionContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>TernaryExpression</c>
 	/// labeled alternative in <see cref="BobLangParser.expression"/>.
 	/// </summary>
@@ -110,13 +117,6 @@ public interface IBobLangParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitPreDecrementExpression([NotNull] BobLangParser.PreDecrementExpressionContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ScopedExpression</c>
-	/// labeled alternative in <see cref="BobLangParser.expression"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitScopedExpression([NotNull] BobLangParser.ScopedExpressionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>PreIncrementExpression</c>
 	/// labeled alternative in <see cref="BobLangParser.expression"/>.

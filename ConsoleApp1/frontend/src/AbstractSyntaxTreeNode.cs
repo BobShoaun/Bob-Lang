@@ -15,13 +15,20 @@ class AbstractSyntaxTreeNode
 
     public override string ToString() => GetType().Name;
 
-    public string ToStringTree(int indent = 0)
+    public string ToStringTree(string prefix = "")
     {
         var display = ToString();
-        var indentation = new string(' ', indent);
 
-        foreach(var child in Children)
-            display += $"\n{indentation}|| {child?.ToStringTree(indent + 3)}";
+        for (int i = 0; i < Children.Count; i++)
+        {
+            var child = Children[i];
+            var isLast = i == Children.Count - 1;
+            var prefixGuide = prefix + (isLast ? "╚═ " : "╠═ ");
+            var childGuide = prefix + (isLast ? "   " : "║  ");
+
+            display += $"\n{prefixGuide}{child?.ToStringTree(childGuide)}";
+        }
+
         return display;
     }
 

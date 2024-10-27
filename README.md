@@ -16,3 +16,8 @@ antlr4-parse grammar/BobLangParser.g4 grammar/BobLangLexer.g4 program -gui ../sa
 ```
 
 
+Run AST builder
+```
+cd ConsoleApp1/
+dotnet run
+```

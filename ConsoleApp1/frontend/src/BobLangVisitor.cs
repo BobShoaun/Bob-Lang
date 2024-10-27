@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using Antlr4.Runtime.Misc;
+using Antlr4.Runtime.Tree;
 using static BobLangParser;
 
 using ASTNode = AbstractSyntaxTreeNode;
@@ -103,18 +104,50 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
 
     public override ASTNode VisitFunctionExpression(FunctionExpressionContext context)
     {
-        Visit(context.children[0]);
-        // Visit(context.children[2]);
-        
-        return new Function();
+        return Visit(context.children[0]);
+    }
+
+    public override ASTNode VisitFunction(FunctionContext context)
+    {
+        var function = new Function();
+
+        var parameters = Visit(context.parameters());
+        foreach (var parameter in parameters.Children)
+            function.AddChild(parameter);
+
+        var body = Visit(context.body());
+        function.AddChild(body);
+
+        return function;
     }
 
     public override ASTNode VisitParameters(ParametersContext context)
     {
-        return base.VisitParameters(context);
+        var parameters = new ASTNode();
+        foreach (var parameterContext in context.parameter())
+        {
+            var parameter = Visit(parameterContext);
+            parameters.AddChild(parameter);
+        }
+        return parameters;
     }
 
-    public override ASTNode VisitScope([NotNull] ScopeContext context)
+    public override ASTNode VisitParameter(ParameterContext context)
+    {
+        var type = context.Type_().GetText();
+        var identifier = new Identifier(context.Identifier().GetText());
+
+        return identifier;
+    }
+
+    public override ASTNode VisitBody(BodyContext context)   
+    {
+        return Visit(context.children[0]);
+    }
+
+
+
+    public override ASTNode VisitScope(ScopeContext context)
     {
         var scope = new Scope();
         foreach(var statementContext in context.statement())
@@ -135,6 +168,36 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
         var value = context.GetText();
         var literal = new Literal(value);
         return literal;
+    }
+
+    public override ASTNode VisitCallExpression(CallExpressionContext context)
+    {
+        Console.WriteLine("Visiting call expression");
+        var callExpression = new CallExpression();
+        var callee = Visit(context.expression());    
+        callExpression.AddChild(callee);
+
+        var arguments = Visit(context.arguments());
+        foreach (var argument in arguments.Children)
+            callExpression.AddChild(argument);
+
+        return callExpression;
+    }
+
+    public override ASTNode VisitArguments(ArgumentsContext context)
+    {
+        var arguments = new ASTNode();
+        foreach (var expressionContext in context.expression())
+        {
+            var expression = Visit(expressionContext);
+            arguments.AddChild(expression);
+        }
+        return arguments;
+    }
+
+    public override ASTNode VisitParenthesizedExpression(ParenthesizedExpressionContext context)
+    {
+        return Visit(context.expression());
     }
 
 }
