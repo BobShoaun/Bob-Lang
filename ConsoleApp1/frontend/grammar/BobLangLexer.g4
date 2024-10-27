@@ -8,6 +8,7 @@ Type_
     | 'float' | 'single'
     | 'double'
     | 'string'
+    | 'void'
     ;
 
 SemiColon                   : ';';
@@ -58,7 +59,6 @@ New        : 'new';
 Catch      : 'catch';
 Finally    : 'finally';
 Return     : 'return';
-Void       : 'void';
 Continue   : 'continue';
 For        : 'for';
 Switch     : 'switch';

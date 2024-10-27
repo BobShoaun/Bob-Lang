@@ -80,7 +80,7 @@ element
     ;
 
 function
-    : parameters '=>' body
+    : parameters '=>' Type_? body
     ;
 
 parameters

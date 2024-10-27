@@ -1,10 +1,10 @@
 int hello;string world = 5
 
-func = (int x, double y) => {
+func = (int x, double y) => int {
     t = 5;
 }
 
-(int x, double y) => {
+(int x, double y) => void {
     t = 5;
 }(x, 8);
 

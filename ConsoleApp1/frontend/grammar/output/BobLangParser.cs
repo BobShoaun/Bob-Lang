@@ -42,10 +42,10 @@ public partial class BobLangParser : Parser {
 		Multiply=19, Divide=20, Modulo=21, Assign=22, Arrow=23, LessThan=24, MoreThan=25, 
 		LessThanEquals=26, GreaterThanEquals=27, Equals_=28, NotEquals=29, And=30, 
 		Or=31, Break=32, Do=33, Case=34, Else=35, New=36, Catch=37, Finally=38, 
-		Return=39, Void=40, Continue=41, For=42, Switch=43, While=44, This=45, 
-		With=46, Default=47, If=48, Throw=49, Delete=50, In=51, Try=52, As=53, 
-		From=54, Of=55, Yield=56, YieldStar=57, Modifier=58, Null=59, Boolean=60, 
-		Integer=61, Character=62, Identifier=63, Whitespace=64, Comment=65;
+		Return=39, Continue=40, For=41, Switch=42, While=43, This=44, With=45, 
+		Default=46, If=47, Throw=48, Delete=49, In=50, Try=51, As=52, From=53, 
+		Of=54, Yield=55, YieldStar=56, Modifier=57, Null=58, Boolean=59, Integer=60, 
+		Character=61, Identifier=62, Whitespace=63, Comment=64;
 	public const int
 		RULE_program = 0, RULE_statement = 1, RULE_declaration = 2, RULE_ifStatement = 3, 
 		RULE_iterationStatement = 4, RULE_iteratorInitializer = 5, RULE_expression = 6, 
@@ -63,9 +63,9 @@ public partial class BobLangParser : Parser {
 		"'}'", "'...'", "'.'", "'!'", "'++'", "'--'", "'+'", "'-'", "'*'", "'/'", 
 		"'%'", "'='", "'=>'", "'<'", "'>'", "'<='", "'>='", "'=='", "'!='", "'&&'", 
 		"'||'", "'break'", "'do'", "'case'", "'else'", "'new'", "'catch'", "'finally'", 
-		"'return'", "'void'", "'continue'", "'for'", "'switch'", "'while'", "'this'", 
-		"'with'", "'default'", "'if'", "'throw'", "'delete'", "'in'", "'try'", 
-		"'as'", "'from'", "'of'", "'yield'", "'yield*'", null, "'null'"
+		"'return'", "'continue'", "'for'", "'switch'", "'while'", "'this'", "'with'", 
+		"'default'", "'if'", "'throw'", "'delete'", "'in'", "'try'", "'as'", "'from'", 
+		"'of'", "'yield'", "'yield*'", null, "'null'"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, "Type_", "SemiColon", "Comma", "Colon", "QuestionMark", "OpenParenthesis", 
@@ -73,8 +73,8 @@ public partial class BobLangParser : Parser {
 		"Ellipsis", "Dot", "Not", "PlusPlus", "MinusMinus", "Plus", "Minus", "Multiply", 
 		"Divide", "Modulo", "Assign", "Arrow", "LessThan", "MoreThan", "LessThanEquals", 
 		"GreaterThanEquals", "Equals_", "NotEquals", "And", "Or", "Break", "Do", 
-		"Case", "Else", "New", "Catch", "Finally", "Return", "Void", "Continue", 
-		"For", "Switch", "While", "This", "With", "Default", "If", "Throw", "Delete", 
+		"Case", "Else", "New", "Catch", "Finally", "Return", "Continue", "For", 
+		"Switch", "While", "This", "With", "Default", "If", "Throw", "Delete", 
 		"In", "Try", "As", "From", "Of", "Yield", "YieldStar", "Modifier", "Null", 
 		"Boolean", "Integer", "Character", "Identifier", "Whitespace", "Comment"
 	};
@@ -141,7 +141,7 @@ public partial class BobLangParser : Parser {
 			State = 37;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & -287926902352001726L) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 9079408589973996866L) != 0)) {
 				{
 				{
 				State = 34;
@@ -550,7 +550,7 @@ public partial class BobLangParser : Parser {
 				State = 86;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -288230376151203518L) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 9079256848779428162L) != 0)) {
 					{
 					State = 85;
 					((ForStatementContext)_localctx).pre = iteratorInitializer();
@@ -562,7 +562,7 @@ public partial class BobLangParser : Parser {
 				State = 90;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -576460752302915264L) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 8935141660703572288L) != 0)) {
 					{
 					State = 89;
 					((ForStatementContext)_localctx).condition = expression(0);
@@ -574,7 +574,7 @@ public partial class BobLangParser : Parser {
 				State = 94;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & -576460752302915264L) != 0)) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 8935141660703572288L) != 0)) {
 					{
 					State = 93;
 					((ForStatementContext)_localctx).post = expression(0);
@@ -1467,6 +1467,7 @@ public partial class BobLangParser : Parser {
 			return GetRuleContext<ParametersContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Arrow() { return GetToken(BobLangParser.Arrow, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Type_() { return GetToken(BobLangParser.Type_, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public BodyContext body() {
 			return GetRuleContext<BodyContext>(0);
 		}
@@ -1495,6 +1496,8 @@ public partial class BobLangParser : Parser {
 			State = 200;
 			Match(Arrow);
 			State = 201;
+			Match(Type_);
+			State = 202;
 			body();
 			}
 		}
@@ -1543,27 +1546,27 @@ public partial class BobLangParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 203;
-			Match(OpenParenthesis);
 			State = 204;
+			Match(OpenParenthesis);
+			State = 205;
 			parameter();
-			State = 209;
+			State = 210;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==Comma) {
 				{
 				{
-				State = 205;
-				Match(Comma);
 				State = 206;
+				Match(Comma);
+				State = 207;
 				parameter();
 				}
 				}
-				State = 211;
+				State = 212;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
-			State = 212;
+			State = 213;
 			Match(CloseParenthesis);
 			}
 		}
@@ -1601,9 +1604,9 @@ public partial class BobLangParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 214;
-			Match(Type_);
 			State = 215;
+			Match(Type_);
+			State = 216;
 			Match(Identifier);
 			}
 		}
@@ -1643,13 +1646,13 @@ public partial class BobLangParser : Parser {
 		BodyContext _localctx = new BodyContext(Context, State);
 		EnterRule(_localctx, 28, RULE_body);
 		try {
-			State = 219;
+			State = 220;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case OpenBrace:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 217;
+				State = 218;
 				scope();
 				}
 				break;
@@ -1667,7 +1670,7 @@ public partial class BobLangParser : Parser {
 			case Identifier:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 218;
+				State = 219;
 				expression(0);
 				}
 				break;
@@ -1716,23 +1719,23 @@ public partial class BobLangParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 221;
+			State = 222;
 			Match(OpenBrace);
-			State = 225;
+			State = 226;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & -287926902352001726L) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & 9079408589973996866L) != 0)) {
 				{
 				{
-				State = 222;
+				State = 223;
 				statement();
 				}
 				}
-				State = 227;
+				State = 228;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
-			State = 228;
+			State = 229;
 			Match(CloseBrace);
 			}
 		}
@@ -1768,20 +1771,20 @@ public partial class BobLangParser : Parser {
 		EndContext _localctx = new EndContext(Context, State);
 		EnterRule(_localctx, 32, RULE_end);
 		try {
-			State = 233;
+			State = 234;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,21,Context) ) {
 			case 1:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 230;
+				State = 231;
 				Match(SemiColon);
 				}
 				break;
 			case 2:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 231;
+				State = 232;
 				Match(Eof);
 				}
 				break;
@@ -1827,7 +1830,7 @@ public partial class BobLangParser : Parser {
 	}
 
 	private static int[] _serializedATN = {
-		4,1,65,236,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		4,1,64,237,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
 		7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,14,
 		2,15,7,15,2,16,7,16,1,0,5,0,36,8,0,10,0,12,0,39,9,0,1,1,1,1,1,1,1,1,1,
 		1,1,1,1,1,1,1,1,1,3,1,50,8,1,1,2,3,2,53,8,2,1,2,1,2,1,2,1,2,3,2,59,8,2,
@@ -1840,26 +1843,26 @@ public partial class BobLangParser : Parser {
 		6,5,6,161,8,6,10,6,12,6,164,9,6,1,7,1,7,1,7,1,7,1,7,3,7,171,8,7,1,8,1,
 		8,1,8,1,8,5,8,177,8,8,10,8,12,8,180,9,8,3,8,182,8,8,1,9,1,9,1,9,1,9,5,
 		9,188,8,9,10,9,12,9,191,9,9,1,9,1,9,1,10,3,10,196,8,10,1,10,1,10,1,11,
-		1,11,1,11,1,11,1,12,1,12,1,12,1,12,5,12,208,8,12,10,12,12,12,211,9,12,
-		1,12,1,12,1,13,1,13,1,13,1,14,1,14,3,14,220,8,14,1,15,1,15,5,15,224,8,
-		15,10,15,12,15,227,9,15,1,15,1,15,1,16,1,16,1,16,3,16,234,8,16,1,16,0,
-		1,12,17,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,0,4,1,0,19,21,1,
-		0,17,18,1,0,24,27,1,0,28,29,264,0,37,1,0,0,0,2,49,1,0,0,0,4,52,1,0,0,0,
-		6,60,1,0,0,0,8,98,1,0,0,0,10,102,1,0,0,0,12,122,1,0,0,0,14,170,1,0,0,0,
-		16,181,1,0,0,0,18,183,1,0,0,0,20,195,1,0,0,0,22,199,1,0,0,0,24,203,1,0,
-		0,0,26,214,1,0,0,0,28,219,1,0,0,0,30,221,1,0,0,0,32,233,1,0,0,0,34,36,
+		1,11,1,11,1,11,1,11,1,12,1,12,1,12,1,12,5,12,209,8,12,10,12,12,12,212,
+		9,12,1,12,1,12,1,13,1,13,1,13,1,14,1,14,3,14,221,8,14,1,15,1,15,5,15,225,
+		8,15,10,15,12,15,228,9,15,1,15,1,15,1,16,1,16,1,16,3,16,235,8,16,1,16,
+		0,1,12,17,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,0,4,1,0,19,21,
+		1,0,17,18,1,0,24,27,1,0,28,29,265,0,37,1,0,0,0,2,49,1,0,0,0,4,52,1,0,0,
+		0,6,60,1,0,0,0,8,98,1,0,0,0,10,102,1,0,0,0,12,122,1,0,0,0,14,170,1,0,0,
+		0,16,181,1,0,0,0,18,183,1,0,0,0,20,195,1,0,0,0,22,199,1,0,0,0,24,204,1,
+		0,0,0,26,215,1,0,0,0,28,220,1,0,0,0,30,222,1,0,0,0,32,234,1,0,0,0,34,36,
 		3,2,1,0,35,34,1,0,0,0,36,39,1,0,0,0,37,35,1,0,0,0,37,38,1,0,0,0,38,1,1,
 		0,0,0,39,37,1,0,0,0,40,41,3,4,2,0,41,42,3,32,16,0,42,50,1,0,0,0,43,44,
 		3,12,6,0,44,45,3,32,16,0,45,50,1,0,0,0,46,50,3,6,3,0,47,50,3,8,4,0,48,
 		50,3,30,15,0,49,40,1,0,0,0,49,43,1,0,0,0,49,46,1,0,0,0,49,47,1,0,0,0,49,
-		48,1,0,0,0,50,3,1,0,0,0,51,53,5,58,0,0,52,51,1,0,0,0,52,53,1,0,0,0,53,
-		54,1,0,0,0,54,55,5,1,0,0,55,58,5,63,0,0,56,57,5,22,0,0,57,59,3,12,6,0,
-		58,56,1,0,0,0,58,59,1,0,0,0,59,5,1,0,0,0,60,61,5,48,0,0,61,62,5,6,0,0,
+		48,1,0,0,0,50,3,1,0,0,0,51,53,5,57,0,0,52,51,1,0,0,0,52,53,1,0,0,0,53,
+		54,1,0,0,0,54,55,5,1,0,0,55,58,5,62,0,0,56,57,5,22,0,0,57,59,3,12,6,0,
+		58,56,1,0,0,0,58,59,1,0,0,0,59,5,1,0,0,0,60,61,5,47,0,0,61,62,5,6,0,0,
 		62,63,3,12,6,0,63,64,5,7,0,0,64,67,3,2,1,0,65,66,5,35,0,0,66,68,3,2,1,
-		0,67,65,1,0,0,0,67,68,1,0,0,0,68,7,1,0,0,0,69,70,5,44,0,0,70,71,5,6,0,
+		0,67,65,1,0,0,0,67,68,1,0,0,0,68,7,1,0,0,0,69,70,5,43,0,0,70,71,5,6,0,
 		0,71,72,3,12,6,0,72,73,5,7,0,0,73,74,3,2,1,0,74,99,1,0,0,0,75,76,5,33,
-		0,0,76,77,3,2,1,0,77,78,5,44,0,0,78,79,5,6,0,0,79,80,3,12,6,0,80,81,5,
-		7,0,0,81,82,3,32,16,0,82,99,1,0,0,0,83,84,5,42,0,0,84,86,5,6,0,0,85,87,
+		0,0,76,77,3,2,1,0,77,78,5,43,0,0,78,79,5,6,0,0,79,80,3,12,6,0,80,81,5,
+		7,0,0,81,82,3,32,16,0,82,99,1,0,0,0,83,84,5,41,0,0,84,86,5,6,0,0,85,87,
 		3,10,5,0,86,85,1,0,0,0,86,87,1,0,0,0,87,88,1,0,0,0,88,90,5,2,0,0,89,91,
 		3,12,6,0,90,89,1,0,0,0,90,91,1,0,0,0,91,92,1,0,0,0,92,94,5,2,0,0,93,95,
 		3,12,6,0,94,93,1,0,0,0,94,95,1,0,0,0,95,96,1,0,0,0,96,97,5,7,0,0,97,99,
@@ -1868,7 +1871,7 @@ public partial class BobLangParser : Parser {
 		0,104,105,6,6,-1,0,105,123,3,22,11,0,106,107,5,15,0,0,107,123,3,12,6,16,
 		108,109,5,16,0,0,109,123,3,12,6,15,110,111,5,17,0,0,111,123,3,12,6,14,
 		112,113,5,18,0,0,113,123,3,12,6,13,114,115,5,14,0,0,115,123,3,12,6,12,
-		116,123,3,14,7,0,117,123,5,63,0,0,118,119,5,6,0,0,119,120,3,12,6,0,120,
+		116,123,3,14,7,0,117,123,5,62,0,0,118,119,5,6,0,0,119,120,3,12,6,0,120,
 		121,5,7,0,0,121,123,1,0,0,0,122,104,1,0,0,0,122,106,1,0,0,0,122,108,1,
 		0,0,0,122,110,1,0,0,0,122,112,1,0,0,0,122,114,1,0,0,0,122,116,1,0,0,0,
 		122,117,1,0,0,0,122,118,1,0,0,0,123,162,1,0,0,0,124,125,10,11,0,0,125,
@@ -1884,8 +1887,8 @@ public partial class BobLangParser : Parser {
 		133,1,0,0,0,160,136,1,0,0,0,160,139,1,0,0,0,160,142,1,0,0,0,160,148,1,
 		0,0,0,160,151,1,0,0,0,160,156,1,0,0,0,160,158,1,0,0,0,161,164,1,0,0,0,
 		162,160,1,0,0,0,162,163,1,0,0,0,163,13,1,0,0,0,164,162,1,0,0,0,165,171,
-		5,61,0,0,166,171,5,62,0,0,167,171,5,60,0,0,168,171,3,18,9,0,169,171,5,
-		59,0,0,170,165,1,0,0,0,170,166,1,0,0,0,170,167,1,0,0,0,170,168,1,0,0,0,
+		5,60,0,0,166,171,5,61,0,0,167,171,5,59,0,0,168,171,3,18,9,0,169,171,5,
+		58,0,0,170,165,1,0,0,0,170,166,1,0,0,0,170,167,1,0,0,0,170,168,1,0,0,0,
 		170,169,1,0,0,0,171,15,1,0,0,0,172,182,1,0,0,0,173,178,3,12,6,0,174,175,
 		5,3,0,0,175,177,3,12,6,0,176,174,1,0,0,0,177,180,1,0,0,0,178,176,1,0,0,
 		0,178,179,1,0,0,0,179,182,1,0,0,0,180,178,1,0,0,0,181,172,1,0,0,0,181,
@@ -1894,16 +1897,17 @@ public partial class BobLangParser : Parser {
 		0,189,190,1,0,0,0,190,192,1,0,0,0,191,189,1,0,0,0,192,193,5,9,0,0,193,
 		19,1,0,0,0,194,196,5,12,0,0,195,194,1,0,0,0,195,196,1,0,0,0,196,197,1,
 		0,0,0,197,198,3,12,6,0,198,21,1,0,0,0,199,200,3,24,12,0,200,201,5,23,0,
-		0,201,202,3,28,14,0,202,23,1,0,0,0,203,204,5,6,0,0,204,209,3,26,13,0,205,
-		206,5,3,0,0,206,208,3,26,13,0,207,205,1,0,0,0,208,211,1,0,0,0,209,207,
-		1,0,0,0,209,210,1,0,0,0,210,212,1,0,0,0,211,209,1,0,0,0,212,213,5,7,0,
-		0,213,25,1,0,0,0,214,215,5,1,0,0,215,216,5,63,0,0,216,27,1,0,0,0,217,220,
-		3,30,15,0,218,220,3,12,6,0,219,217,1,0,0,0,219,218,1,0,0,0,220,29,1,0,
-		0,0,221,225,5,10,0,0,222,224,3,2,1,0,223,222,1,0,0,0,224,227,1,0,0,0,225,
-		223,1,0,0,0,225,226,1,0,0,0,226,228,1,0,0,0,227,225,1,0,0,0,228,229,5,
-		11,0,0,229,31,1,0,0,0,230,234,5,2,0,0,231,234,5,0,0,1,232,234,1,0,0,0,
-		233,230,1,0,0,0,233,231,1,0,0,0,233,232,1,0,0,0,234,33,1,0,0,0,22,37,49,
-		52,58,67,86,90,94,98,102,122,160,162,170,178,181,189,195,209,219,225,233
+		0,201,202,5,1,0,0,202,203,3,28,14,0,203,23,1,0,0,0,204,205,5,6,0,0,205,
+		210,3,26,13,0,206,207,5,3,0,0,207,209,3,26,13,0,208,206,1,0,0,0,209,212,
+		1,0,0,0,210,208,1,0,0,0,210,211,1,0,0,0,211,213,1,0,0,0,212,210,1,0,0,
+		0,213,214,5,7,0,0,214,25,1,0,0,0,215,216,5,1,0,0,216,217,5,62,0,0,217,
+		27,1,0,0,0,218,221,3,30,15,0,219,221,3,12,6,0,220,218,1,0,0,0,220,219,
+		1,0,0,0,221,29,1,0,0,0,222,226,5,10,0,0,223,225,3,2,1,0,224,223,1,0,0,
+		0,225,228,1,0,0,0,226,224,1,0,0,0,226,227,1,0,0,0,227,229,1,0,0,0,228,
+		226,1,0,0,0,229,230,5,11,0,0,230,31,1,0,0,0,231,235,5,2,0,0,232,235,5,
+		0,0,1,233,235,1,0,0,0,234,231,1,0,0,0,234,232,1,0,0,0,234,233,1,0,0,0,
+		235,33,1,0,0,0,22,37,49,52,58,67,86,90,94,98,102,122,160,162,170,178,181,
+		189,195,210,220,226,234
 	};
 
 	public static readonly ATN _ATN =
