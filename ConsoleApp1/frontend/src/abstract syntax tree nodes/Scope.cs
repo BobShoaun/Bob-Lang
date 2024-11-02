@@ -1,4 +1,4 @@
-class Scope : Statement
+public class Scope : Statement
 {
 
     // symbol table map goes here

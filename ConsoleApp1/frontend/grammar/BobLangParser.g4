@@ -14,6 +14,9 @@ statement
     | ifStatement
     | iterationStatement
     | scope
+    | return end
+    | break end
+    | continue end
     ;
 
 declaration
@@ -98,6 +101,18 @@ body
 
 scope
     : '{' statement* '}'
+    ;
+
+return
+    : 'return' expression?
+    ;
+
+break
+    : 'break'
+    ;
+
+continue
+    : 'continue'
     ;
 
 end

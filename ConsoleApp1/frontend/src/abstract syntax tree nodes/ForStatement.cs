@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using ASTNode = AbstractSyntaxTreeNode;
 
-class ForStatement : Statement
+public class ForStatement : Statement
 {
     private int preIndex = -1;
     private int conditionIndex = -1;

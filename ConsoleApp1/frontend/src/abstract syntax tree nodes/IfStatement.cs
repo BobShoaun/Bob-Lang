@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-class IfStatement : Statement
+public class IfStatement : Statement
 {
     public Expression Condition => (Expression)Children[0];
     
@@ -21,5 +21,10 @@ class IfStatement : Statement
     {
         Debug.Assert(!hasElse()); 
         AddChild(statement);
+    }
+
+    public override void GenerateIR()
+    {
+        Console.WriteLine("Generating IR for IfStatement");
     }
 }

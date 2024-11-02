@@ -2,6 +2,7 @@ int hello;string world = 5
 
 func = (int x, double y) => int {
     t = 5;
+    return 69;
 }
 
 (int x, double y) => void {

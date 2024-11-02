@@ -1,4 +1,4 @@
-class UnaryExpression : Expression
+public class UnaryExpression : Expression
 {
     public Expression Operand => (Expression)Children[0];
     public string Operator { get; }

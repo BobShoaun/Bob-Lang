@@ -1,4 +1,4 @@
-class Literal : Expression
+public class Literal : Expression
 {
     public string Value { get; }
     public Literal(string value) => Value = value;

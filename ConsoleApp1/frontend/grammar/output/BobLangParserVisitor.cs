@@ -221,6 +221,24 @@ public interface IBobLangParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitScope([NotNull] BobLangParser.ScopeContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="BobLangParser.return"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitReturn([NotNull] BobLangParser.ReturnContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="BobLangParser.break"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBreak([NotNull] BobLangParser.BreakContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="BobLangParser.continue"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitContinue([NotNull] BobLangParser.ContinueContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="BobLangParser.end"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

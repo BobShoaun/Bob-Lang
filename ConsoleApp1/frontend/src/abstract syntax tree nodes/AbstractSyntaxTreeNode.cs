@@ -1,4 +1,4 @@
-class AbstractSyntaxTreeNode
+public class AbstractSyntaxTreeNode
 {
     public int lineNumber { get; set; }
     public List<AbstractSyntaxTreeNode> Children { get; set; }
@@ -31,5 +31,12 @@ class AbstractSyntaxTreeNode
 
         return display;
     }
+
+    public virtual void GenerateIR() {
+        foreach (var child in Children)
+            child.GenerateIR();
+    }
+
+    public virtual void Accept(IAbstractSyntaxTreeVisitor visitor) {}
 
 }

@@ -1,4 +1,4 @@
-class Identifier : Expression
+public class Identifier : Expression
 {
     public string Value { get; }
 

@@ -109,7 +109,8 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
 
     public override ASTNode VisitFunction(FunctionContext context)
     {
-        var function = new Function();
+        var returnType = TypeHelper.GetType(context.Type_().GetText());
+        var function = new Function(returnType);
 
         var parameters = Visit(context.parameters());
         foreach (var parameter in parameters.Children)
@@ -134,10 +135,13 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
 
     public override ASTNode VisitParameter(ParameterContext context)
     {
-        var type = context.Type_().GetText();
-        var identifier = new Identifier(context.Identifier().GetText());
+        var type = TypeHelper.GetType(context.Type_().GetText());
 
-        return identifier;
+        var parameter = new Parameter(type);
+        var identifier = new Identifier(context.Identifier().GetText());
+        parameter.AddChild(identifier);
+
+        return parameter;
     }
 
     public override ASTNode VisitBody(BodyContext context)   
@@ -198,6 +202,16 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
     public override ASTNode VisitParenthesizedExpression(ParenthesizedExpressionContext context)
     {
         return Visit(context.expression());
+    }
+
+    public override ASTNode VisitReturn(ReturnContext context)
+    {
+        var expression = context.expression();
+        if (expression != null) {
+            var expressionASTNode = (Expression)Visit(expression);
+            return new Return(expressionASTNode);
+        }
+        return new Return();
     }
 
 }
