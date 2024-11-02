@@ -8,7 +8,7 @@ java -jar antlr-4.13.2-complete.jar -Dlanguage=CSharp BobLang.g4
 
 Generate parser and lexer c# code
 ```
-cd frontend
+cd ConsoleApp1/frontend/
 antlr4 -Dlanguage=CSharp grammar/BobLangParser.g4 grammar/BobLangLexer.g4 -o grammar/output -Xexact-output-dir -visitor -no-listener
 ```
 

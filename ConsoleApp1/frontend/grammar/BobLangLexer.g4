@@ -2,12 +2,31 @@ lexer grammar BobLangLexer;
 
 
 Type_
-    : 'int' | 'integer'
-    | 'char' | 'character'
-    | 'bool' | 'boolean'
-    | 'float' | 'single'
+    : 'short'
+    | 'int16'
+    | 'integer16'
+    | 'int'
+    | 'integer'
+    | 'int32'
+    | 'integer32'
+    | 'long'
+    | 'int64'
+    | 'integer64'
+    | 'half'
+    | 'float16'
+    | 'single'
+    | 'float'
+    | 'float32'
     | 'double'
+    | 'float64'
+    | 'decimal'
+    | 'float128'
+    | 'char' 
+    | 'character'
+    | 'str'
     | 'string'
+    | 'bool' 
+    | 'boolean'
     | 'void'
     ;
 
@@ -101,9 +120,17 @@ Integer
     | [1-9][0-9]*
     ;
 
+Float
+    : [0-9]*'.'[0-9]+
+    ;
+
 Character
     : '\''.'\'' 
     | '\'''\\'.'\''
+    ;
+
+String
+    : '"' (~["\r\n])* '"'
     ;
 
 Identifier

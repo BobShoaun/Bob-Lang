@@ -8,6 +8,7 @@ public enum Type {
     Float32,
     Float64,
     Float128,
+    Character,
     String,
     Boolean,
     Void
@@ -43,14 +44,19 @@ public class TypeHelper {
             case "decimal":
             case "float128":
                 return Type.Float128;
+            case "char":
+            case "character":
+                return Type.Character;
+            case "str":
             case "string":
                 return Type.String;
             case "bool":
+            case "boolean":
                 return Type.Boolean;
             case "void":
                 return Type.Void;
             default:
-                throw new System.Exception($"Unknown type {type}");
+                throw new Exception($"Unknown type {type}");
         }
     }
 
@@ -70,6 +76,8 @@ public class TypeHelper {
                 return LLVM.DoubleType();
             case Type.Float128:
                 return LLVM.X86FP80Type();
+            case Type.Character:
+                return LLVM.Int8Type();
             case Type.String:
                 return LLVM.PointerType(LLVM.Int8Type(), 0);
             case Type.Boolean:

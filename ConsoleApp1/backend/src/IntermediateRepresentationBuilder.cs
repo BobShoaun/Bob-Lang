@@ -66,16 +66,24 @@ class IntermediateRepresentationBuilder: IAbstractSyntaxTreeVisitor
     public void VisitDeclaration(Declaration declaration)
     {
         Console.WriteLine("Visiting declaration");
+
+        var value = LLVM.BuildAlloca(builder, TypeHelper.GetLLVMType(declaration.Type), declaration.Identifier.Value);
+
+        namedValues.Add(declaration.Identifier.Value, value);
     }
 
-    public void VisitLiteral(Literal literal)
+    public void VisitLiteral<T>(Literal<T> literal)
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Visiting literal: " + literal.Value);
+        // throw new NotImplementedException();
+        var value = LLVM.ConstReal(TypeHelper.GetLLVMType(Type.Integer32), 69);
+
+        valueStack.Push(value);
     }
 
     public void VisitIdentifier(Identifier identifier)
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Visiting identifier: " + identifier.Value);
     }
 
     public void VisitIfStatement(IfStatement ifStatement)
@@ -115,6 +123,7 @@ class IntermediateRepresentationBuilder: IAbstractSyntaxTreeVisitor
         }
 
 
+        valueStack.Push(function_); // push first to enable recursive calls
         function.Body.Accept(this);
     }
 
@@ -125,15 +134,45 @@ class IntermediateRepresentationBuilder: IAbstractSyntaxTreeVisitor
 
     public void VisitBinaryExpression(BinaryExpression binaryExpression)
     {
-        Console.WriteLine("Visiting binary expression");
+        Console.WriteLine("Visiting binary expression fdf");
+
+        return;
 
         binaryExpression.Left.Accept(this);
+        var leftValue = valueStack.Pop();
+
         binaryExpression.Right.Accept(this);
+        var rightValue = valueStack.Pop();
+
+        LLVMValueRef result;
+
+        switch (binaryExpression.Operator)
+        {
+            case "+":
+                result = LLVM.BuildAdd(builder, leftValue, rightValue, "addtmp");
+                break;
+            case "-":
+                result = LLVM.BuildSub(builder, leftValue, rightValue, "subtmp");
+                break;
+            case "*":
+                result = LLVM.BuildMul(builder, leftValue, rightValue, "multmp");
+                break;
+            case "/":
+                result = LLVM.BuildSDiv(builder, leftValue, rightValue, "divtmp");
+                break;
+            default:
+                // throw new Exception("invalid binary operator");
+                throw new NotImplementedException();
+        }
+
+        valueStack.Push(result);
     }
 
     public void VisitCallExpression(CallExpression callExpression)
     {
-        throw new NotImplementedException();
+        callExpression.Callee.Accept(this);
+        // string functionName = (callExpression.Callee as Identifier).Value;
+        // Console.WriteLine("Visiting call expression: " + functionName);
     }
 
     public void VisitParameter(Parameter parameter)

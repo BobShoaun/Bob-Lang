@@ -8,7 +8,7 @@ public interface IAbstractSyntaxTreeVisitor
 
     void VisitDeclaration(Declaration declaration);
 
-    void VisitLiteral(Literal literal);
+    void VisitLiteral<T>(Literal<T> literal);
 
     void VisitIdentifier(Identifier identifier);
 

@@ -1,4 +1,6 @@
-int hello;string world = 5
+int hello;string world = "5"
+
+int16 func;
 
 func = (int x, double y) => int {
     t = 5;
@@ -21,6 +23,8 @@ else {
     PI = dfsdf;
 }
 
-constant double PI = 3;
+constant double PI = 3.142;
+
+func(2, 3);
 
 

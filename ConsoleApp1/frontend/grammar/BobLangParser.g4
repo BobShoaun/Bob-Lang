@@ -62,9 +62,11 @@ expression
     ;
 
 literal
-    : Integer
+    : Boolean
+    | Integer
+    | Float
     | Character
-    | Boolean
+    | String
     | array
     | Null
     ;

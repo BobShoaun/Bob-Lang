@@ -30,7 +30,7 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
     public override ASTNode VisitDeclaration(DeclarationContext context)
     {
         var modifier = context.Modifier()?.GetText();
-        var type = context.Type_().GetText();
+        var type = TypeHelper.GetType(context.Type_().GetText());
 
         var identifier = new Identifier(context.Identifier().GetText());
         var declaration = new Declaration(type, identifier, modifier);
@@ -50,14 +50,14 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
     //     var @operator = context.GetChild(0).GetText();
     // }
 
-    public override ASTNode VisitPostIncrementExpression (PostIncrementExpressionContext context)
+    public override ASTNode VisitPostIncrementExpression(PostIncrementExpressionContext context)
     {
         var operand = (Expression)Visit(context.expression());
         var @operator = context.op.Text;
         return new UnaryExpression(operand, @operator, false);
     }
 
-    public override ASTNode VisitBinaryExpression (BinaryExpressionContext context)
+    public override ASTNode VisitBinaryExpression(BinaryExpressionContext context)
     {
         var left = (Expression)Visit(context.expression(0));
         var right = (Expression)Visit(context.expression(1));
@@ -144,7 +144,7 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
         return parameter;
     }
 
-    public override ASTNode VisitBody(BodyContext context)   
+    public override ASTNode VisitBody(BodyContext context)
     {
         return Visit(context.children[0]);
     }
@@ -154,7 +154,7 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
     public override ASTNode VisitScope(ScopeContext context)
     {
         var scope = new Scope();
-        foreach(var statementContext in context.statement())
+        foreach (var statementContext in context.statement())
         {
             var statement = Visit(statementContext);
             scope.AddChild(statement);
@@ -170,15 +170,26 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
     public override ASTNode VisitLiteral(LiteralContext context)
     {
         var value = context.GetText();
-        var literal = new Literal(value);
-        return literal;
+        return value switch
+        {
+            "true" or "false" 
+                => new Literal<bool>(bool.Parse(value), Type.Boolean),
+            _ when value.Length == 3 && value[0] == '\'' && value[2] == '\'' 
+                => new Literal<char>(value[1], Type.Character),
+            _ when value.Length >= 2 && value[0] == '"' && value[^1] == '"' 
+                => new Literal<string>(value[1..^1], Type.String),
+            _ when value.Contains(".") && float.TryParse(value, out float floatValue) 
+                => new Literal<float>(float.Parse(value), Type.Float32),
+            _ when int.TryParse(value, out int intValue) 
+                => new Literal<int>(intValue, Type.Integer32),
+            _ => new Literal<string>(value, Type.String)
+        };
     }
 
     public override ASTNode VisitCallExpression(CallExpressionContext context)
     {
-        Console.WriteLine("Visiting call expression");
         var callExpression = new CallExpression();
-        var callee = Visit(context.expression());    
+        var callee = Visit(context.expression());
         callExpression.AddChild(callee);
 
         var arguments = Visit(context.arguments());
@@ -207,7 +218,8 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
     public override ASTNode VisitReturn(ReturnContext context)
     {
         var expression = context.expression();
-        if (expression != null) {
+        if (expression != null)
+        {
             var expressionASTNode = (Expression)Visit(expression);
             return new Return(expressionASTNode);
         }

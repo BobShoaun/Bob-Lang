@@ -1,15 +1,14 @@
 using System.Diagnostics;
-using System.Reflection;
 
 public class Declaration : Statement
 {
     public string Modifier { get; }
-    public string Type { get; }
+    public Type Type { get; }
     public Identifier Identifier => (Identifier)Children[0];
     public Expression InitialExpression => (Expression)Children[1];
 
 
-    public Declaration(string type, Identifier identifier, string modifier)
+    public Declaration(Type type, Identifier identifier, string modifier)
     {
         Modifier = modifier ?? "constant";
         Type = type;
@@ -25,11 +24,6 @@ public class Declaration : Statement
     }
 
     public override string ToString() => $"{base.ToString()} [{Modifier} {Type}]";
-
-    public override void GenerateIR()
-    {
-        Console.WriteLine("Generating IR for Declaration");
-    }
 
     public override void Accept(IAbstractSyntaxTreeVisitor visitor)
         => visitor.VisitDeclaration(this);

@@ -13,4 +13,7 @@ public class UnaryExpression : Expression
 
     public override string ToString() => $"{base.ToString()} [{Operator}]";
 
+    public override void Accept(IAbstractSyntaxTreeVisitor visitor)
+        => visitor.VisitUnaryExpression(this);
+
 }
