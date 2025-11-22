@@ -7,4 +7,7 @@ public class Scope : Statement
     public Scope()
     {
     }
+
+    public override void Accept(IAbstractSyntaxTreeVisitor visitor)
+        => visitor.VisitScope(this);
 }

@@ -109,12 +109,15 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
 
     public override ASTNode VisitFunction(FunctionContext context)
     {
-        var returnType = TypeHelper.GetType(context.Type_().GetText());
+        var returnType = TypeHelper.GetType(context.Type_()?.GetText() ?? "void");
         var function = new Function(returnType);
 
-        var parameters = Visit(context.parameters());
-        foreach (var parameter in parameters.Children)
-            function.AddChild(parameter);
+        if (context.parameters() != null)
+        {
+            var parameters = Visit(context.parameters());
+            foreach (var parameter in parameters.Children)
+                function.AddChild(parameter);
+        }
 
         var body = Visit(context.body());
         function.AddChild(body);
@@ -149,8 +152,6 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
         return Visit(context.children[0]);
     }
 
-
-
     public override ASTNode VisitScope(ScopeContext context)
     {
         var scope = new Scope();
@@ -167,24 +168,40 @@ class BobLangVisitor : BobLangParserBaseVisitor<ASTNode>
         return new Identifier(context.GetText());
     }
 
-    public override ASTNode VisitLiteral(LiteralContext context)
-    {
-        var value = context.GetText();
-        return value switch
-        {
-            "true" or "false" 
-                => new Literal<bool>(bool.Parse(value), Type.Boolean),
-            _ when value.Length == 3 && value[0] == '\'' && value[2] == '\'' 
-                => new Literal<char>(value[1], Type.Character),
-            _ when value.Length >= 2 && value[0] == '"' && value[^1] == '"' 
-                => new Literal<string>(value[1..^1], Type.String),
-            _ when value.Contains(".") && float.TryParse(value, out float floatValue) 
-                => new Literal<float>(float.Parse(value), Type.Float32),
-            _ when int.TryParse(value, out int intValue) 
-                => new Literal<int>(intValue, Type.Integer32),
-            _ => new Literal<string>(value, Type.String)
-        };
-    }
+    // public override ASTNode VisitLiteral(LiteralContext context)
+    // {
+        
+    //     var value = context.GetText();
+    //     return value switch
+    //     {
+    //         "true" or "false" 
+    //             => new Literal<bool>(bool.Parse(value), Type.Boolean),
+    //         _ when value.Length == 3 && value[0] == '\'' && value[2] == '\'' 
+    //             => new Literal<char>(value[1], Type.Character),
+    //         _ when value.Length >= 2 && value[0] == '"' && value[^1] == '"' 
+    //             => new Literal<string>(value[1..^1], Type.String),
+    //         _ when value.Contains(".") && float.TryParse(value, out float floatValue) 
+    //             => new Literal<float>(float.Parse(value), Type.Float32),
+    //         _ when int.TryParse(value, out int intValue) 
+    //             => new Literal<int>(intValue, Type.Integer32),
+    //         _ => new Literal<string>(value, Type.String)
+    //     };
+    // }
+
+    public override ASTNode VisitBooleanLiteral(BooleanLiteralContext context)
+        => new Literal<bool>(bool.Parse(context.GetText()), Type.Boolean);
+    
+    public override ASTNode VisitCharacterLiteral(CharacterLiteralContext context)
+        => new Literal<char>(context.GetText()[1], Type.Character);
+    
+    public override ASTNode VisitStringLiteral(StringLiteralContext context)
+        => new Literal<string>(context.GetText()[1..^1], Type.String);
+    
+    public override ASTNode VisitIntegerLiteral(IntegerLiteralContext context)
+        => new Literal<int>(int.Parse(context.GetText()), Type.Integer32);
+
+    public override ASTNode VisitFloatLiteral(FloatLiteralContext context)
+        => new Literal<float>(float.Parse(context.GetText()), Type.Float32);
 
     public override ASTNode VisitCallExpression(CallExpressionContext context)
     {

@@ -62,13 +62,13 @@ expression
     ;
 
 literal
-    : Boolean
-    | Integer
-    | Float
-    | Character
-    | String
-    | array
-    | Null
+    : Boolean   # BooleanLiteral
+    | Integer   # IntegerLiteral
+    | Float     # FloatLiteral
+    | Character # CharacterLiteral
+    | String    # StringLiteral
+    | array     # ArrayLiteral
+    | Null      # NullLiteral
     ;
 
 arguments
@@ -85,11 +85,11 @@ element
     ;
 
 function
-    : parameters '=>' Type_? body
+    : '(' parameters? ')' '=>' Type_? body
     ;
 
 parameters
-    : '(' parameter (',' parameter)* ')'
+    : parameter (',' parameter)*
     ;
 
 parameter

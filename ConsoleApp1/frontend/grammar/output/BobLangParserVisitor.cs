@@ -167,11 +167,54 @@ public interface IBobLangParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitIdentifierExpression([NotNull] BobLangParser.IdentifierExpressionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="BobLangParser.literal"/>.
+	/// Visit a parse tree produced by the <c>BooleanLiteral</c>
+	/// labeled alternative in <see cref="BobLangParser.literal"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitLiteral([NotNull] BobLangParser.LiteralContext context);
+	Result VisitBooleanLiteral([NotNull] BobLangParser.BooleanLiteralContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>IntegerLiteral</c>
+	/// labeled alternative in <see cref="BobLangParser.literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIntegerLiteral([NotNull] BobLangParser.IntegerLiteralContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>FloatLiteral</c>
+	/// labeled alternative in <see cref="BobLangParser.literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFloatLiteral([NotNull] BobLangParser.FloatLiteralContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>CharacterLiteral</c>
+	/// labeled alternative in <see cref="BobLangParser.literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCharacterLiteral([NotNull] BobLangParser.CharacterLiteralContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>StringLiteral</c>
+	/// labeled alternative in <see cref="BobLangParser.literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitStringLiteral([NotNull] BobLangParser.StringLiteralContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>ArrayLiteral</c>
+	/// labeled alternative in <see cref="BobLangParser.literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitArrayLiteral([NotNull] BobLangParser.ArrayLiteralContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>NullLiteral</c>
+	/// labeled alternative in <see cref="BobLangParser.literal"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNullLiteral([NotNull] BobLangParser.NullLiteralContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="BobLangParser.arguments"/>.
 	/// </summary>

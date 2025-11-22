@@ -1,5 +1,7 @@
 using LLVMSharp;
 
+
+// TODO: make this an ASTNode
 public enum Type {
     Integer16,
     Integer32,

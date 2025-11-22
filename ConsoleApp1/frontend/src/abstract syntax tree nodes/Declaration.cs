@@ -5,7 +5,14 @@ public class Declaration : Statement
     public string Modifier { get; }
     public Type Type { get; }
     public Identifier Identifier => (Identifier)Children[0];
-    public Expression InitialExpression => (Expression)Children[1];
+    public Expression InitialExpression {
+        get => (Expression)Children[1];
+        set {
+            Debug.Assert(!HasInitialExpression);
+            AddChild(value);
+        }
+    }
+    public bool HasInitialExpression => Children.Count == 2;
 
 
     public Declaration(Type type, Identifier identifier, string modifier)
@@ -15,13 +22,12 @@ public class Declaration : Statement
         AddChild(identifier);
     }
 
-    public bool hasInitialExpression() => Children.Count == 2;
 
-    public void SetInitialExpression(Expression expression)
-    {
-        Debug.Assert(!hasInitialExpression());
-        AddChild(expression);
-    }
+    // public void SetInitialExpression(Expression expression)
+    // {
+    //     Debug.Assert(!HasInitialExpression);
+    //     AddChild(expression);
+    // }
 
     public override string ToString() => $"{base.ToString()} [{Modifier} {Type}]";
 

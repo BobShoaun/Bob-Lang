@@ -1,30 +1,11 @@
-int hello;string world = "5"
+() => {
 
-int16 func;
+    int hello = 69;
 
-func = (int x, double y) => int {
-    t = 5;
-    return 69;
-}
+    int funcAdd = (int x, int y) => int {
+        return x + y;
+    };
 
-(int x, double y) => void {
-    t = 5;
-}(x, 8);
-
-
-for (int i = 0; i < 2; i++) {
+    funcAdd(hello);
 
 }
-
-
-if (true)
-    PI = f;
-else {
-    PI = dfsdf;
-}
-
-constant double PI = 3.142;
-
-func(2, 3);
-
-

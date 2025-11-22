@@ -6,11 +6,11 @@ public class Function : Expression
     // public Identifier[] Parameters { get; }
     // public BlockStatement Body { get; }
 
-    public static int index = -1;
+    public static int index = 0;
 
     public Type ReturnType { get; private set; }
 
-    public string Identifier => $"function{index}";
+    public string Identifier { get; }
 
     public List<Parameter> Parameters => Children.Take(Children.Count - 1).Cast<Parameter>().ToList();
 
@@ -18,24 +18,11 @@ public class Function : Expression
     
     public Function(Type returnType)
     {
-        index ++;
+        Identifier = $"function{index++}";
         ReturnType = returnType;
     }
 
-    public override string ToString() => $"{base.ToString()} [{Identifier}]";
-
-    public override void GenerateIR()
-    {
-        Console.WriteLine("Generating IR for Function");
-
-        Body.GenerateIR();
-
-        // LLVMTypeRef[] paramTypes = { LLVM.Int32Type(), LLVM.Int32Type() };
-        // LLVMTypeRef retType = LLVM.FunctionType(LLVM.Int32Type(), paramTypes, false);
-        // LLVMValueRef func = LLVM.AddFunction(Module, "add", retType);
-        // LLVMBasicBlockRef entry = LLVM.AppendBasicBlock(func, "entry");
-        // LLVM.PositionBuilderAtEnd(builder, entry);
-    }
+    public override string ToString() => $"{base.ToString()} [{ReturnType} {Identifier}]";
 
     public override void Accept(IAbstractSyntaxTreeVisitor visitor)
         => visitor.VisitFunction(this);
